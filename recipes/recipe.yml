@@ -54,7 +54,6 @@ modules:
         - gh
         - lazygit
     remove:
-      skip-unavailable: true
       packages:
         - sway
         - sway-config-fedora
