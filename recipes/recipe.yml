@@ -38,21 +38,10 @@ modules:
         - swayidle
         - brightnessctl
         - playerctl
-        - cliphist
         - pwvucontrol
         - wl-mirror
-
-        - bat
-        - eza
-        - starship
-        - zoxide
-        - yazi
-        - btop
-        - fd-find
-        - ripgrep
-        - tldr
-        - gh
-        - lazygit
+        - wl-clipboard
+        - cliphist
     remove:
       packages:
         - sway

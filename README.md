@@ -10,6 +10,41 @@ A [niri](https://github.com/niri-wm/niri) + [noctalia](https://docs.noctalia.dev
 desktop on top of secureblue's `sericea-main-hardened` image. Config for niri
 itself and noctalia's settings are personal dotfiles, not part of this image.
 
+CLI tools and shell env aren't baked into the image; set them up once per machine:
+
+```bash
+brew install bat eza starship zoxide yazi btop fd ripgrep tldr gh lazygit neovim
+```
+
+```bash
+cat >> ~/.bashrc <<'EOF'
+command -v bat >/dev/null 2>&1 && alias cat=bat
+command -v nvim >/dev/null 2>&1 && alias vim=nvim
+if command -v eza >/dev/null 2>&1; then
+	alias ls=eza
+	alias ll="eza -l"
+	alias la="eza -la"
+fi
+
+command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd bash)"
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
+
+if command -v yazi >/dev/null 2>&1; then
+	y() {
+		local tmp cwd
+		tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+		command yazi "$@" --cwd-file="$tmp"
+		cwd="$(command cat -- "$tmp")"
+		if [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && [ -d "$cwd" ]; then
+			cd -- "$cwd"
+		fi
+		rm -f -- "$tmp"
+	}
+fi
+EOF
+```
+
 ## Installation
 
 > [!WARNING]  
