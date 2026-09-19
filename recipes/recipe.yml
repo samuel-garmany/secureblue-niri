@@ -31,14 +31,13 @@ modules:
         - greetd
         - greetd-selinux
         - noctalia-greeter
-        - noctalia-shell
+        - noctalia
         - ghostty
         - xdg-terminal-exec
 
         - swayidle
         - brightnessctl
         - playerctl
-        - pwvucontrol
         - wl-mirror
         - wl-clipboard
         - cliphist
