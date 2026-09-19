@@ -4,6 +4,12 @@ See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup i
 
 After setup, it is recommended you update this README to describe your custom image.
 
+## What this is
+
+A [niri](https://github.com/niri-wm/niri) + [noctalia](https://docs.noctalia.dev/)
+desktop on top of secureblue's `sericea-main-hardened` image. Config for niri
+itself and noctalia's settings are personal dotfiles, not part of this image.
+
 ## Installation
 
 > [!WARNING]  
