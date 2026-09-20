@@ -45,6 +45,23 @@ modules:
         - ddcutil
         - brightnessctl
 
+        - nautilus
+        - file-roller
+        - sushi
+        - gnome-disk-utility
+        - glycin-thumbnailer
+        - xdg-user-dirs-gtk
+
+        - gvfs-goa
+        - gvfs-archive
+        - gvfs-afc
+        - gvfs-gphoto2
+        - gvfs-fuse
+
+        # Background indexer, local only. Drop both for filename-only search.
+        - localsearch
+        - tinysparql
+
         - ghostty
         - xdg-terminal-exec
 
@@ -92,6 +109,17 @@ modules:
 
         # nm-connection-editor stays: Noctalia's network panel cannot
         # configure 802.1X/WPA2-Enterprise, which campus networks use.
+
+  # secureblue's files/scripts/disablenautilusbwrap.sh, which only runs on
+  # their Silverblue variant. Nautilus' bwrap thumbnailer sandbox fails under
+  # secureblue's hardening; SNAP_NAME makes Nautilus skip it.
+  - type: script
+    snippets:
+      - >-
+        sed -i -e 's|^Exec=|Exec=/usr/bin/env SNAP_NAME=nautilus |'
+        /usr/share/applications/org.gnome.Nautilus.desktop
+        /usr/share/dbus-1/services/org.gnome.Nautilus.service
+        /usr/share/dbus-1/services/org.freedesktop.FileManager1.service
 
   - type: systemd
     system:
