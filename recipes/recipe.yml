@@ -59,6 +59,40 @@ modules:
         - sddm
         - sddm-wayland-sway
 
+        # Sericea's desktop set. Top-level installs in the base with no
+        # reverse dependencies; each is replaced by niri, Noctalia or GNOME.
+        - waybar
+        - rofi
+        - foot
+        - swaybg
+        - swaylock
+        - swayidle
+        - wlsunset
+        - kanshi
+        - imv
+        - pavucontrol
+        - blueman
+        - network-manager-applet
+
+        - thunar-archive-plugin
+        - Thunar
+        - tumbler
+        - xarchiver
+        - exo
+        - garcon
+        - xfconf
+        - xfce4-panel
+        - libxfce4ui
+        - libxfce4windowing
+        - libxfce4util
+
+        - xdg-desktop-portal-wlr
+        - grim
+        - slurp
+
+        # nm-connection-editor stays: Noctalia's network panel cannot
+        # configure 802.1X/WPA2-Enterprise, which campus networks use.
+
   - type: systemd
     system:
       enabled:
