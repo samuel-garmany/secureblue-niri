@@ -2,10 +2,6 @@
 
 See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
 
-After setup, it is recommended you update this README to describe your custom image.
-
-## What this is
-
 A [niri](https://github.com/niri-wm/niri) + [noctalia](https://docs.noctalia.dev/)
 desktop on top of secureblue's `sericea-main-hardened` image.
 
@@ -18,7 +14,20 @@ Terra is build-time only, pinned to release 44 and limited by `includepkgs` to
 the three packages Fedora does not carry (`ghostty`, `ghostty-terminfo`,
 `noctalia-greeter`).
 
-Dotfiles, not part of this image:
+## Notes
+
+`ujust set-xwayland` writes `/etc/sway/config.d/99-noxwayland.conf`, which niri
+never reads, so its status output means nothing here. niri starts
+`xwayland-satellite` itself and the package stays in the image.
+
+Noctalia does night light over `zwlr_gamma_control_v1`, and holds a logind
+delay inhibitor to lock before sleep. wlsunset and swayidle are not needed.
+
+CUPS is masked in the base. `ujust set-cups enable` before you need to print.
+
+## Dotfiles
+
+Not part of this image.
 
 | Path | Notes |
 | --- | --- |
@@ -27,7 +36,9 @@ Dotfiles, not part of this image:
 | `~/.config/noctalia/00-desktop.toml` | Hand-written Noctalia config. |
 | `~/.local/state/noctalia/settings.toml` | Written by Noctalia's settings GUI, and overrides the file above. Safe to delete. |
 
-CLI tools and shell env aren't baked into the image; set them up once per machine:
+## Per machine
+
+CLI tools and shell env aren't baked into the image.
 
 ```bash
 brew install bat eza starship zoxide yazi btop fd ripgrep tldr gh lazygit neovim
@@ -38,9 +49,9 @@ cat >> ~/.bashrc <<'EOF'
 command -v bat >/dev/null 2>&1 && alias cat=bat
 command -v nvim >/dev/null 2>&1 && alias vim=nvim
 if command -v eza >/dev/null 2>&1; then
-	alias ls=eza
-	alias ll="eza -l"
-	alias la="eza -la"
+    alias ls=eza
+    alias ll="eza -l"
+    alias la="eza -la"
 fi
 
 command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
@@ -48,18 +59,29 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd bash)"
 command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
 
 if command -v yazi >/dev/null 2>&1; then
-	y() {
-		local tmp cwd
-		tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-		command yazi "$@" --cwd-file="$tmp"
-		cwd="$(command cat -- "$tmp")"
-		if [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && [ -d "$cwd" ]; then
-			cd -- "$cwd"
-		fi
-		rm -f -- "$tmp"
-	}
+    y() {
+        local tmp cwd
+        tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        command yazi "$@" --cwd-file="$tmp"
+        cwd="$(command cat -- "$tmp")"
+        if [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && [ -d "$cwd" ]; then
+            cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+    }
 fi
 EOF
+```
+
+## Course environments
+
+`files/system/etc/distrobox/school.ini` holds the R, LaTeX, Arduino and
+Python/Qt toolchains that used to be `devShells/` in nixos-config. It is a
+separate file so secureblue's own `distrobox.ini` entries stay intact.
+
+```bash
+ujust distrobox-assemble r create /etc/distrobox/school.ini
+distrobox enter r
 ```
 
 ## Installation
