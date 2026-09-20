@@ -19,6 +19,7 @@ modules:
   - type: script
     snippets:
       - dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+      - rpm --import /usr/share/pki/rpm-gpg/secureblue.gpg /etc/pki/rpm-gpg/RPM-GPG-KEY-terra44
 
   - type: dnf
     install:
