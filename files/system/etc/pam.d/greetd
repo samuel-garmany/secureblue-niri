@@ -1,7 +1,4 @@
 #%PAM-1.0
-# password-auth, not system-auth: it is the only difference, and it is what
-# keeps pam_fprintd out of the greeter. Fingerprint stays available to sudo,
-# polkit and the lock screen, which use system-auth.
 auth       substack    password-auth
 -auth       optional    pam_gnome_keyring.so
 -auth       optional    pam_kwallet5.so

@@ -22,7 +22,6 @@ modules:
       files:
         - terra.repo
       keys:
-        # Must match gpgkey= in terra.repo, release included.
         - https://repos.fyralabs.com/terra44/key.asc
     install:
       install-weak-deps: false
@@ -35,8 +34,6 @@ modules:
         - greetd-selinux
         - noctalia-greeter
 
-        # niri-portals.conf asks for gnome, then gtk. Without the gnome
-        # backend nothing on the system implements ScreenCast.
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
 
@@ -55,7 +52,6 @@ modules:
         - gvfs-gphoto2
         - gvfs-fuse
 
-        # Background indexer, local only. Drop both for filename-only search.
         - localsearch
         - tinysparql
 
@@ -71,8 +67,6 @@ modules:
         - sddm
         - sddm-wayland-sway
 
-        # Sericea's desktop set. Top-level installs in the base with no
-        # reverse dependencies; each is replaced by niri, Noctalia or GNOME.
         - waybar
         - rofi
         - foot
@@ -102,12 +96,6 @@ modules:
         - grim
         - slurp
 
-        # nm-connection-editor stays: Noctalia's network panel cannot
-        # configure 802.1X/WPA2-Enterprise, which campus networks use.
-
-  # secureblue's files/scripts/disablenautilusbwrap.sh, which only runs on
-  # their Silverblue variant. Nautilus' bwrap thumbnailer sandbox fails under
-  # secureblue's hardening; SNAP_NAME makes Nautilus skip it.
   - type: script
     snippets:
       - >-
