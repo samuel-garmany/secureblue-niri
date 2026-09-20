@@ -65,10 +65,8 @@ modules:
         - ghostty
         - xdg-terminal-exec
 
-        - playerctl
         - wl-mirror
         - wl-clipboard
-        - cliphist
     remove:
       packages:
         - sway
