@@ -16,26 +16,38 @@ modules:
       - source: system
         destination: / # copies files/system/* into your image's root folder /
 
-  - type: script
-    snippets:
-      - dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-
   - type: dnf
+    repos:
+      cleanup: true
+      files:
+        - terra.repo
+      keys:
+        # Must match gpgkey= in terra.repo, release included.
+        - https://repos.fyralabs.com/terra44/key.asc
     install:
       install-weak-deps: false
       packages:
         - niri
+        - noctalia
         - xwayland-satellite
 
         - greetd
         - greetd-selinux
         - noctalia-greeter
-        - noctalia
+
+        # niri-portals.conf asks for gnome, then gtk. Without the gnome
+        # backend nothing on the system implements ScreenCast.
+        - xdg-desktop-portal-gnome
+        - xdg-desktop-portal-gtk
+
+        # ddcutil drives external monitors over DDC/CI, brightnessctl
+        # internal laptop panels. Different hardware, both wanted.
+        - ddcutil
+        - brightnessctl
+
         - ghostty
         - xdg-terminal-exec
 
-        - swayidle
-        - brightnessctl
         - playerctl
         - wl-mirror
         - wl-clipboard
@@ -53,8 +65,5 @@ modules:
         - greetd.service
       masked:
         - sddm.service
-    user:
-      enabled:
-        - swayidle.service
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

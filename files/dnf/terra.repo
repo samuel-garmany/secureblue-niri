@@ -1,0 +1,13 @@
+# Build-time only; repos.cleanup drops it from the finished image.
+# includepkgs limits Terra to the packages Fedora does not carry, so it
+# cannot shadow a Fedora build. Release is pinned by hand because the base
+# does not necessarily report the version this image is built for.
+[terra]
+name=Terra 44
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra44&arch=$basearch
+type=rpm
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://repos.fyralabs.com/terra44/key.asc
+includepkgs=ghostty,ghostty-terminfo,noctalia-greeter
