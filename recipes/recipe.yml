@@ -19,7 +19,6 @@ modules:
   - type: script
     snippets:
       - dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-      - rpm --import /usr/share/pki/rpm-gpg/secureblue.gpg /etc/pki/rpm-gpg/RPM-GPG-KEY-terra44
 
   - type: dnf
     install:
@@ -27,7 +26,6 @@ modules:
       packages:
         - niri
         - xwayland-satellite
-        - polkit-kde
 
         - greetd
         - greetd-selinux
@@ -57,7 +55,6 @@ modules:
         - sddm.service
     user:
       enabled:
-        - polkit-kde-authentication-agent-1.service
         - swayidle.service
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

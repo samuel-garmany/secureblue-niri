@@ -6,7 +6,7 @@ PartOf=graphical-session.target
 [Service]
 Restart=on-failure
 RestartSec=2
-ExecStart=/usr/bin/swayidle -w before-sleep 'noctalia ipc call lockScreen lock'
+ExecStart=/usr/bin/swayidle -w before-sleep 'noctalia msg session lock'
 
 [Install]
 WantedBy=graphical-session.target
