@@ -40,9 +40,6 @@ modules:
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
 
-        # ddcutil drives external monitors over DDC/CI, brightnessctl
-        # internal laptop panels. Different hardware, both wanted.
-        - ddcutil
         - brightnessctl
 
         - nautilus
