@@ -30,6 +30,8 @@ modules:
         - noctalia
         - xwayland-satellite
 
+        - gnome-keyring
+
         - greetd
         - greetd-selinux
         - noctalia-greeter
