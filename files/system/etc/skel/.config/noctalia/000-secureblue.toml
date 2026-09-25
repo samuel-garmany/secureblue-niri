@@ -1,2 +1,5 @@
 [shell]
 polkit_agent = true
+
+[shell.greeter_sync]
+privilege_command = "run0 --setenv=PKEXEC_UID=$(id -u)"

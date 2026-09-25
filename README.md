@@ -6,9 +6,10 @@ A [niri](https://github.com/niri-wm/niri) + [noctalia](https://docs.noctalia.dev
 desktop on top of secureblue's `sericea-main-hardened` image.
 
 The base is Fedora Sway Atomic, so it ships Sway's desktop set (Thunar, foot,
-rofi, waybar, swaylock, swayidle, ...) as top-level packages with no reverse
-dependencies. The recipe removes them by name and replaces each with Noctalia,
-niri or the GNOME apps Silverblue ships.
+rofi, imv, ...) as top-level packages with no reverse dependencies. The recipe
+removes the ones with a Noctalia, niri or GNOME replacement and leaves the rest
+installed. Login is greetd plus noctalia-greeter; sddm stays installed but
+masked.
 
 Terra is build-time only, pinned to release 44 and limited by `includepkgs` to
 the three packages Fedora does not carry (`ghostty`, `ghostty-terminfo`,

@@ -30,6 +30,10 @@ modules:
         - noctalia
         - xwayland-satellite
 
+        - greetd
+        - greetd-selinux
+        - noctalia-greeter
+
         - gnome-keyring
 
         - xdg-desktop-portal-gnome
@@ -94,6 +98,8 @@ modules:
   - type: systemd
     system:
       enabled:
+        - greetd.service
+      masked:
         - sddm.service
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully

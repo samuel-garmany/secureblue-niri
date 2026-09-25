@@ -9,7 +9,7 @@ gpgkey=https://repos.fyralabs.com/terra44/key.asc
 repo_gpgcheck=1
 enabled=1
 enabled_metadata=1
-includepkgs=ghostty,ghostty-terminfo
+includepkgs=ghostty,ghostty-terminfo,noctalia-greeter
 
 [terra-source]
 name=Terra 44 - Source
