@@ -99,6 +99,10 @@ modules:
         - slurp
 
   - type: script
+    scripts:
+      - pam-fde-boot-pw.sh
+
+  - type: script
     snippets:
       - >-
         sed -i -e 's|^Exec=|Exec=/usr/bin/env SNAP_NAME=nautilus |'

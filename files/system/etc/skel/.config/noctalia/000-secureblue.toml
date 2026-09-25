@@ -1,12 +1,6 @@
-# Defaults for a new account on secureblue. Noctalia merges every *.toml in
-# ~/.config/noctalia/ in name order, so add your own settings in a later file.
-
 [shell]
-# secureblue ships no sudo, su or pkexec; run0 authorizes through polkit and
-# needs an agent to prompt outside a terminal. Nothing else here provides one.
 polkit_agent = true
 
 [shell.greeter_sync]
-# noctalia-greeter's --sync only runs as root with PKEXEC_UID set, and there is
-# no pkexec here. Set the value to your own uid if it is not 1000.
+# Set to your own uid if it is not 1000.
 privilege_command = "run0 --setenv=PKEXEC_UID=1000"
