@@ -59,14 +59,8 @@ modules:
         - wl-clipboard
     remove:
       packages:
-        - sway-config-fedora
-
-        - waybar
         - rofi
         - foot
-        - swaybg
-        - swaylock
-        - swayidle
         - wlsunset
         - kanshi
         - imv
@@ -87,11 +81,10 @@ modules:
         - libxfce4util
 
         - xdg-desktop-portal-wlr
-        - grim
-        - slurp
 
   - type: script
     snippets:
+      - dnf -y remove terra-release
       - >-
         sed -i -e 's|^Exec=|Exec=/usr/bin/env SNAP_NAME=nautilus |'
         /usr/share/applications/org.gnome.Nautilus.desktop
