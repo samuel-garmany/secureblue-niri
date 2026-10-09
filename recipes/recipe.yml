@@ -87,6 +87,10 @@ modules:
         - xdg-desktop-portal-wlr
 
   - type: script
+    scripts:
+      - pam-fde-boot-pw.sh
+
+  - type: script
     snippets:
       - dnf -y remove terra-release
       - >-
