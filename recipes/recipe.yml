@@ -6,7 +6,7 @@ name: secureblue-niri
 description: A hardened niri desktop, built on secureblue.
 
 base-image: ghcr.io/secureblue/sericea-main-hardened
-image-version: 44
+image-version: latest
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -21,8 +21,6 @@ modules:
       cleanup: true
       files:
         - terra.repo
-      keys:
-        - https://repos.fyralabs.com/terra44/key.asc
     install:
       install-weak-deps: false
       packages:
@@ -39,16 +37,12 @@ modules:
         - xdg-desktop-portal-gnome
         - xdg-desktop-portal-gtk
 
-        - brightnessctl
-
         - nautilus
         - file-roller
         - sushi
         - gnome-disk-utility
         - glycin-thumbnailer
-        - xdg-user-dirs-gtk
 
-        - gvfs-goa
         - gvfs-archive
         - gvfs-afc
         - gvfs-gphoto2
@@ -60,11 +54,11 @@ modules:
         - ghostty
 
         - wl-mirror
-        - wl-clipboard
     remove:
       packages:
         - rofi
         - foot
+        - dunst
         - wlsunset
         - kanshi
         - imv
@@ -89,15 +83,6 @@ modules:
   - type: script
     scripts:
       - pam-fde-boot-pw.sh
-
-  - type: script
-    snippets:
-      - dnf -y remove terra-release
-      - >-
-        sed -i -e 's|^Exec=|Exec=/usr/bin/env SNAP_NAME=nautilus |'
-        /usr/share/applications/org.gnome.Nautilus.desktop
-        /usr/share/dbus-1/services/org.gnome.Nautilus.service
-        /usr/share/dbus-1/services/org.freedesktop.FileManager1.service
 
   - type: systemd
     system:

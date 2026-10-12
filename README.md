@@ -11,9 +11,8 @@ removes the ones with a Noctalia, niri or GNOME replacement and leaves the rest
 installed. Login is greetd plus noctalia-greeter; sddm stays installed but
 masked.
 
-Terra is build-time only, pinned to release 44 and limited by `includepkgs` to
-the three packages Fedora does not carry (`ghostty`, `ghostty-terminfo`,
-`noctalia-greeter`).
+Terra is build-time only and limited by `includepkgs` to the three packages
+Fedora does not carry (`ghostty`, `ghostty-terminfo`, `noctalia-greeter`).
 
 ## Dotfiles
 
