@@ -11,6 +11,10 @@ removes the ones with a Noctalia, niri or GNOME replacement and leaves the rest
 installed. Login is greetd plus noctalia-greeter; sddm stays installed but
 masked.
 
+Automatic updates skip secureblue's SLSA provenance check, which only
+recognises `ghcr.io/secureblue/*` images and would otherwise fail every run.
+Updates are still verified against this repo's cosign signature.
+
 Terra is build-time only and limited by `includepkgs` to the three packages
 Fedora does not carry (`ghostty`, `ghostty-terminfo`, `noctalia-greeter`).
 
@@ -21,9 +25,6 @@ of this image, are in my [dotfiles](https://github.com/samuel-garmany/dotfiles)
 repo.
 
 ## Installation
-
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
 
 To rebase an existing atomic Fedora installation to the latest build:
 
@@ -44,7 +45,7 @@ To rebase an existing atomic Fedora installation to the latest build:
   systemctl reboot
   ```
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+The `latest` tag will automatically point to the latest build. The recipe tracks secureblue's `latest` image, so the Fedora major version moves forward when secureblue's does.
 
 ## Verification
 

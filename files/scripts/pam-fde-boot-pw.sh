@@ -10,7 +10,10 @@ dnf install -y "${DEPS[@]}"
 git clone -q https://git.sr.ht/~kennylevinsen/pam_fde_boot_pw "$SRC"
 git -C "$SRC" -c advice.detachedHead=false checkout -q "$COMMIT"
 
-gcc -shared -fPIC -O2 -o /usr/lib64/security/pam_fde_boot_pw.so "$SRC/main.c" -lpam -lkeyutils
+gcc -shared -fPIC -O2 \
+    -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fstack-clash-protection -fcf-protection \
+    -Wl,-z,relro,-z,now \
+    -o /usr/lib64/security/pam_fde_boot_pw.so "$SRC/main.c" -lpam -lkeyutils
 
 dnf remove -y "${DEPS[@]}"
 rm -rf "$SRC"
