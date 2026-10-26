@@ -7,9 +7,9 @@ image, built with [BlueBuild](https://blue-build.org).
 
 The base is Fedora Sway Atomic, so it ships Sway's desktop set (Thunar, foot,
 rofi, imv, ...) as top-level packages with no reverse dependencies. The recipe
-removes the ones with a Noctalia, niri or GNOME replacement and leaves the rest
-installed. Login is greetd plus noctalia-greeter; sddm stays installed but
-masked.
+removes Sway itself, sddm, and the ones with a Noctalia, niri or GNOME
+replacement, and leaves the rest installed. Login is greetd plus
+noctalia-greeter.
 
 Automatic updates skip secureblue's SLSA provenance check, which only
 recognises `ghcr.io/secureblue/*` images and would otherwise fail every run.
